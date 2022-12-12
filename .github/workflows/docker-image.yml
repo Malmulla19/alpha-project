@@ -15,7 +15,9 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build SP app
-      run: ./mvnw package && java -jar target/product-service-0.0.1-SNAPSHOT.jar
+      run:  |
+          cd productservice 
+          ./mvnw package && java -jar target/product-service-0.0.1-SNAPSHOT.jar
     - name: Build the Docker image
       run: |
           cd productservice
