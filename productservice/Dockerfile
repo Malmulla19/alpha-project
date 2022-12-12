@@ -1,6 +1,6 @@
 #Create a docker image for the product service
 FROM openjdk:11
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY ${JAR_FILE} productservice.jar
+ENTRYPOINT ["java","-jar","/productservice.jar"]
 EXPOSE 8080
