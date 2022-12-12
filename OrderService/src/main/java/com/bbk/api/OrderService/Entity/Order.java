@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,25 +18,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "ORDER_DETAILS")
+@Builder
 public class Order {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	@Column(name = "PRODUCT_ID")
-	private long productId;
+    @Column(name = "PRODUCT_ID")
+    private long productId;
 
-	@Column(name = "QUANTITY")
-	private long quantity;
+    @Column(name = "QUANTITY")
+    private long quantity;
 
-	@Column(name = "ORDER_DATE")
-	private Instant orderDate;
+    @Column(name = "ORDER_DATE")
+    private Instant orderDate;
 
-	@Column(name = "STATUS")
-	private String OrderStatus;
+    @Column(name = "STATUS")
+    private String OrderStatus;
 
-	@Column(name = "TOTAL_AMOUNT")
-	private long amount;
+    @Column(name = "TOTAL_AMOUNT")
+    private long amount;
 
 }
