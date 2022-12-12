@@ -1,5 +1,13 @@
 package com.bbk.api.OrderService.service;
 
-public class OrderServiceImpl {
+import com.bbk.api.OrderService.model.OrderRequest;
+
+public class OrderServiceImpl implements OrderService {
+
+	@Override
+	public long placeOrder(OrderRequest orderRequest) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
