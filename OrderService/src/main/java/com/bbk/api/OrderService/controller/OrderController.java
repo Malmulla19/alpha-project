@@ -2,6 +2,7 @@ package com.bbk.api.OrderService.controller;
 
 import com.bbk.api.OrderService.Entity.Order;
 import com.bbk.api.OrderService.Entity.OrderLine;
+import com.bbk.api.OrderService.external.client.ProductService;
 import com.bbk.api.OrderService.repository.OrderRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,13 @@ import java.util.stream.Collectors;
 @Log4j2
 public class OrderController extends CrudController<Order, Long> {
 
-    @Autowired
     OrderRepository orderRepository;
+    ProductService productService;
 
-    OrderController(OrderRepository orderRepository) {
+    OrderController(OrderRepository orderRepository, ProductService productService) {
         super(orderRepository);
+        this.orderRepository = orderRepository;
+        this.productService = productService;
     }
 
     @PostMapping
@@ -36,16 +39,23 @@ public class OrderController extends CrudController<Order, Long> {
                 .orderStatus("TESTTTT")
                 .build();
         Order finalNewOrder = newOrder;
+        
+
+
         List<OrderLine> orderLines = order.getOrderLines().stream().map(line -> {
             line.setOrder(finalNewOrder);
+            productService.reduceQuantity(line.getProductId(), line.getQuantity());
             return line;
         }).collect(Collectors.toList());
+
         newOrder.setOrderLines(orderLines);
+
         newOrder = orderRepository.save(newOrder);
         newOrder.setOrderLines(newOrder.getOrderLines().stream().map(line -> {
             line.setOrder(null);
             return line;
         }).collect(Collectors.toList()));
+
         return new ResponseEntity<>(newOrder, HttpStatus.OK);
     }
 

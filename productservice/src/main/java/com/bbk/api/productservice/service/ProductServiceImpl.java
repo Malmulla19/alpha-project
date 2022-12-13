@@ -36,10 +36,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void reduceQuantity(Long id, long quantity) {
-        Product product = productRepository.findById(id).get();
+    public void reduceQuantity(long id, long quantity) throws Exception {
+        Product product = this.productRepository.findById(id).get();
+        if ((product.getQuantity() - quantity) < 0) {
+            throw new Exception("Run out of stock");
+        }
+        
         product.setQuantity(product.getQuantity() - quantity);
+        
         productRepository.save(product);
     }
-
 }

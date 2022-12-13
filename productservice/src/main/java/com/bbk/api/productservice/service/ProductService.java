@@ -16,5 +16,5 @@ public interface ProductService {
 
     Long removeProduct(long id);
 
-    void reduceQuantity(Long id, long quantity);
+    void reduceQuantity(long id, long quantity) throws Exception;
 }

@@ -20,46 +20,52 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping()
-    public ResponseEntity<?> findAll() {
-        return new ResponseEntity<>(this.productService.getAllProducts(), HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> find(@PathVariable Long id) {
-        return new ResponseEntity<>(this.productService.getProduct(id), HttpStatus.OK);
-    }
+    //@GetMapping()
+    //public ResponseEntity<?> findAll() {
+    //    return new ResponseEntity<>(this.productService.getAllProducts(), HttpStatus.OK);
+    //}
+    //
+    //@GetMapping("/{id}")
+    //public ResponseEntity<?> find(@PathVariable Long id) {
+    //    return new ResponseEntity<>(this.productService.getProduct(id), HttpStatus.OK);
+    //}
+    //
+    //@PutMapping("/reduceQuantity/{id}")
+    //public ResponseEntity<Void> find(@PathVariable Long id, @RequestParam long quantity) {
+    //    productService.reduceQuantity(id, quantity);
+    //
+    //    return new ResponseEntity<>(HttpStatus.OK);
+    //}
+    //
+    //@PostMapping()
+    //public ResponseEntity<Long> create(@RequestBody ProductRequest productRequest) {
+    //    Product product = Product
+    //            .builder()
+    //            .productName(productRequest.getName())
+    //            .price(productRequest.getPrice())
+    //            .quantity(productRequest.getQuantity()).build();
+    //
+    //    long productId = this.productService
+    //            .addProduct(product);
+    //    return new ResponseEntity<>(productId, HttpStatus.OK);
+    //}
+    //
+    //@PutMapping("/{id}")
+    //public ResponseEntity<?> update(@PathVariable long id, @RequestBody Product updatedProduct) {
+    //    Product product = productService.getProduct(id);
+    //    BeanUtils.copyProperties(updatedProduct, product, "id");
+    //
+    //    return new ResponseEntity<>(productRepository.save(product), HttpStatus.OK);
+    //}
+    //
+    //@DeleteMapping("/{id}")
+    //public ResponseEntity<?> destroy(@PathVariable Long id) {
+    //    return new ResponseEntity<>(this.productService.removeProduct(id), HttpStatus.OK);
+    //}
 
     @PutMapping("/reduceQuantity/{id}")
-    public ResponseEntity<Void> find(@PathVariable Long id, @RequestParam long quantity) {
-        productService.reduceQuantity(id, quantity);
-        
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping()
-    public ResponseEntity<Long> create(@RequestBody ProductRequest productRequest) {
-        Product product = Product
-                .builder()
-                .productName(productRequest.getName())
-                .price(productRequest.getPrice())
-                .quantity(productRequest.getQuantity()).build();
-
-        long productId = this.productService
-                .addProduct(product);
-        return new ResponseEntity<>(productId, HttpStatus.OK);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable long id, @RequestBody Product updatedProduct) {
-        Product product = productService.getProduct(id);
-        BeanUtils.copyProperties(updatedProduct, product, "id");
-
-        return new ResponseEntity<>(productRepository.save(product), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> destroy(@PathVariable Long id) {
-        return new ResponseEntity<>(this.productService.removeProduct(id), HttpStatus.OK);
+    public ResponseEntity<Void> reduceQuantity(@PathVariable long id, @RequestParam long quantity) throws Exception {
+        this.productService.reduceQuantity(id, quantity);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }
