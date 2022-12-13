@@ -16,30 +16,3 @@ WORKDIR /opt/app
 COPY --from=maven /usr/src/app/target/${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
-
-
-
-#
-# Build stage
-#
-#FROM maven:3.8.3-openjdk-17 AS maven
-
-#WORKDIR /usr/src/app
-#COPY . /usr/src/app
-# Compile and package the application to an executable JAR
-#RUN mvn package 
-
-# For Java 11, 
-#FROM adoptopenjdk/openjdk11:alpine-jre
-#ARG JAR_FILE=target/*.jar
-#WORKDIR /opt/app
-#COPY --from=maven /usr/src/app/${JAR_FILE} /opt/app/ productservice 0.0.1-SNAPSHOT.jar
-#ENTRYPOINT ["java","-jar","/productservice 0.0.1-SNAPSHOT.jar"]
-#EXPOSE 8080
-
-#Create a docker image for the product service
-#FROM adoptopenjdk/openjdk11:alpine-jre
-#ARG JAR_FILE=target/*.jar
-#COPY ${JAR_FILE} productservice.jar
-#ENTRYPOINT ["java","-jar","/productservice.jar"]
-#EXPOSE 8080
