@@ -12,7 +12,7 @@ RUN mvn package
 FROM adoptopenjdk/openjdk11:alpine-jre
 ARG JAR_FILE=target/*.jar
 WORKDIR /opt/app
-COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/ app.jar
+COPY --from=maven /usr/src/app/${JAR_FILE} /opt/app/ app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
 
