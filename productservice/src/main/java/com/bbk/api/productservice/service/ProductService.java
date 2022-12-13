@@ -15,4 +15,6 @@ public interface ProductService {
     long addProduct(Product product);
 
     Long removeProduct(long id);
+
+    void reduceQuantity(Long id, long quantity);
 }

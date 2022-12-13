@@ -35,4 +35,11 @@ public class ProductServiceImpl implements ProductService {
         return id;
     }
 
+    @Override
+    public void reduceQuantity(Long id, long quantity) {
+        Product product = productRepository.findById(id).get();
+        product.setQuantity(product.getQuantity() - quantity);
+        productRepository.save(product);
+    }
+
 }

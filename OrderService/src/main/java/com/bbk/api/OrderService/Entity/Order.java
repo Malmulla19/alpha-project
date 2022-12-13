@@ -1,5 +1,6 @@
 package com.bbk.api.OrderService.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,8 +44,8 @@ public class Order {
     @Column(name = "ORDER_DATE")
     private Instant orderDate;
 
-    @Column(name = "STATUS")
-    private String OrderStatus;
+	@Column(name = "STATUS")
+	private String orderStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLine> orderLines;
