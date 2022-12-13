@@ -12,8 +12,8 @@ RUN mvn package
 FROM adoptopenjdk/openjdk11:alpine-jre
 ARG JAR_FILE=target/*.jar
 WORKDIR /opt/app
-COPY --from=maven /usr/src/app/${JAR_FILE} /opt/app/ app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY --from=maven /usr/src/app/${JAR_FILE} /opt/app/ productservice 0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/productservice 0.0.1-SNAPSHOT.jar"]
 EXPOSE 8080
 
 #Create a docker image for the product service
