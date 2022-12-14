@@ -51,11 +51,7 @@ public class OrderController extends CrudController<Order, Long> {
         newOrder.setOrderLines(orderLines);
 
         newOrder = orderRepository.save(newOrder);
-        newOrder.setOrderLines(newOrder.getOrderLines().stream().map(line -> {
-            line.setOrder(null);
-            return line;
-        }).collect(Collectors.toList()));
-
+        
         return new ResponseEntity<>(newOrder, HttpStatus.OK);
     }
 

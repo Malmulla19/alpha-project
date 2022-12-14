@@ -47,6 +47,7 @@ public class Order {
 	@Column(name = "STATUS")
 	private String orderStatus;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLine> orderLines;
 

@@ -31,6 +31,8 @@ public class OrderLine {
     @Column(name = "TOTAL_PRICE")
     private long totalPrice;
 
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
